@@ -84,7 +84,20 @@ jobs:
       - run:
           name: Smoke test
           command: |
-            cat ~/project/green_lb_url.txt
+            GREEN_LB_URL=$(cat ~/project/green_lb_url.txt)
+            curl -s http://${GREEN_LB_URL} | grep '"success": true'
+            retval=$?
+
+            echo $retval
+            if [ $retval -eq 0 ]
+            then
+               echo "URL OK"
+               exit 0
+            else
+               echo "URL Fail"
+               exit 1
+            fi
+
 
 workflows:
   get_ip:
