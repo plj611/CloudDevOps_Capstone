@@ -88,15 +88,16 @@ jobs:
             curl -s http://${GREEN_LB_URL} | grep '"success": true'
             retval=$?
 
+            echo ${GREEN_LB_URL}
             echo $retval
-            if [ $retval -eq 0 ]
-            then
-               echo "URL OK"
-               exit 0
-            else
-               echo "URL Fail"
-               exit 1
-            fi
+          #  if [ $retval -eq 0 ]
+          #  then
+          #     echo "URL OK"
+          #     exit 0
+          #  else
+          #     echo "URL Fail"
+          #     exit 1
+          #  fi
 
 
 workflows:
