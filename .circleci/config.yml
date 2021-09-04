@@ -98,6 +98,11 @@ jobs:
                echo "URL Fail"
                exit 1
             fi
+      - run:
+          name: Promote to PROD
+          command: |
+            echo "Promote candidate to PROD"
+            bin/promote_app.sh
 
 workflows:
   get_ip:
