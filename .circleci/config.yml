@@ -30,11 +30,15 @@ jobs:
             make lint
       - setup_remote_docker:
           version: 19.03.13
-
       - run:
           name: Build docker image
           command: |
             make build_docker
+      - docker/check
+      - run:
+          name: Push docker image
+          command: |
+            make push_docker
       
       - save_cache:
           paths:
