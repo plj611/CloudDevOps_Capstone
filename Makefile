@@ -15,7 +15,7 @@ install:
 	pip install --upgrade pip &&\
 		pip install -r requirements.txt
 	sudo wget https://github.com/hadolint/hadolint/releases/download/v2.7.0/hadolint-Linux-x86_64 -O /bin/hadolint
-	sudo a+x /bin/hadolint
+	sudo chmod a+x /bin/hadolint
 
 test:
 	# Additional, optional, tests could go here
