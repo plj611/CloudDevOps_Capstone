@@ -23,6 +23,15 @@ jobs:
             make setup
             . .capstone/bin/activate
             make install
+      - run:
+          name: Lint source files
+          command: |
+            make lint
+      - run:
+          name: Build docker image
+          command: |
+            make build_docker
+      
       - save_cache:
           paths:
             - ./venv
