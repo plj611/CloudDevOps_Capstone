@@ -1,0 +1,28 @@
+version: 2.1
+
+orbs:
+  kubernetes: circleci/kubernetes@0.12.0
+  docker: circleci/docker@1.7.0
+
+jobs:
+  getpods:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - kubernetes/install-kubeconfig:
+          kubeconfig: KUBECONFIG_DATA
+      - kubernetes/install-kubectl
+      - run:
+          name: Install aws-iam-authenticator
+          command: |
+            sudo make aws-iam
+      - run:
+          name: Get pods
+          command: |
+            kubectl get pods
+
+workflows:
+  get_ip:
+    jobs:
+      - getpods
