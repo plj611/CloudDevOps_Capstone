@@ -62,6 +62,14 @@ jobs:
           command: |
             bin/deploy_green_app.sh
             kubectl get pods
+      - run:
+          name: Deploy green load balancer 
+          command: |
+            bin/deploy_green_lb.sh > ~/green_lb_url.txt
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - ~/green_lb_url.txt
 
 workflows:
   get_ip:
