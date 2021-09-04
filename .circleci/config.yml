@@ -65,14 +65,30 @@ jobs:
       - run:
           name: Deploy green load balancer 
           command: |
-            bin/deploy_green_lb.sh > ~/green_lb_url.txt
+            bin/deploy_green_lb.sh > ~/project/green_lb_url.txt
       - persist_to_workspace:
           root: ~/
           paths:
-            - ~/green_lb_url.txt
+            - project/green_lb_url.txt
+
+  promote_app:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - kubernetes/install-kubeconfig:
+          kubeconfig: KUBECONFIG_DATA
+      - kubernetes/install-kubectl
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: Smoke test
+          command: |
+            cat ~/project/green_lb_url.txt
 
 workflows:
   get_ip:
     jobs:
      # - build_app
       - deploy_to_k8s 
+      - promote_app
