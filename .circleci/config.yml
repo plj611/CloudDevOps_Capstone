@@ -28,6 +28,9 @@ jobs:
           command: |
             . .capstone/bin/activate
             make lint
+      - setup_remote_docker:
+          version: 19.03.13
+
       - run:
           name: Build docker image
           command: |
