@@ -91,4 +91,5 @@ workflows:
     jobs:
      # - build_app
       - deploy_to_k8s 
-      - promote_app
+      - promote_app:
+          requires: [deploy_to_k8s]
