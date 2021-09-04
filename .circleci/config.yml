@@ -45,7 +45,7 @@ jobs:
             - ./venv
           key: v1-dependencies-{{ checksum "requirements.txt" }}
 
-  getpods:
+  deploy_to_k8s:
     docker:
       - image: cimg/base:stable
     steps:
@@ -58,12 +58,13 @@ jobs:
           command: |
             sudo make aws-iam
       - run:
-          name: Get pods
+          name: Deploy green apps into EKS
           command: |
+            bin/deploy_green_app.sh
             kubectl get pods
 
 workflows:
   get_ip:
     jobs:
       - build_app
-#      - getpods
+#      - deploy_to_k8s 
