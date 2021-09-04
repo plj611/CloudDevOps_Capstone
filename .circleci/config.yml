@@ -86,20 +86,18 @@ jobs:
           command: |
             GREEN_LB_URL=$(cat ~/project/green_lb_url.txt | tail -1)
             echo ${GREEN_LB_URL}
-            curl http://${GREEN_LB_URL} 
-            #curl -s http://${GREEN_LB_URL} | grep '"success": true'
+            curl -s --retry 30 http://${GREEN_LB_URL} | grep '"success": true'
             retval=$?
 
             echo $retval
-            #if [ $retval -eq 0 ]
-            #then
-            #   echo "URL OK"
-            #   exit 0
-            #else
-            #   echo "URL Fail"
-            #   exit 1
-            #fi
-
+            if [ $retval -eq 0 ]
+            then
+               echo "URL OK"
+               exit 0
+            else
+               echo "URL Fail"
+               exit 1
+            fi
 
 workflows:
   get_ip:
