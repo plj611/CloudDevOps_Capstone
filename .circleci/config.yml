@@ -103,6 +103,12 @@ jobs:
           command: |
             echo "Promote candidate to PROD"
             bin/promote_app.sh
+      - run:
+          name: Cleanup last app and green load balancer
+          command: |
+            echo "Cleanup last app and green load balancer"
+            bin/del_green_lb.sh
+            bin/del_last_app.sh
 
 workflows:
   get_ip:
