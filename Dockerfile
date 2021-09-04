@@ -12,7 +12,7 @@ COPY . /opt/
 # Install packages from requirements.txt
 # hadolint ignore=DL3013
 RUN pip install --upgrade pip && \
-    pip install -r /opt/requirements.txt
+    pip install -r /opt/requirements.txt --no-cache-dir
 
 
 ## Step 4:
