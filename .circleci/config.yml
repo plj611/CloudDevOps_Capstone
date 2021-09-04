@@ -66,5 +66,5 @@ jobs:
 workflows:
   get_ip:
     jobs:
-      - build_app
-#      - deploy_to_k8s 
+     # - build_app
+      - deploy_to_k8s 
