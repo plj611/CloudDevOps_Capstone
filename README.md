@@ -28,10 +28,10 @@ The blue-green deployment is described in the following picture
 - AWS_SECRET_ACCESS_KEY
 - DOCKER_LOGIN
 - DOCKER_PASSWORD
-- KUBECONFIG_DATA			
-
-2. Manually create Kubernetes cluster in AWS EKS using the script 'bin/create_cluster.sh'
-3. Deploy blue app and blue load balancer using the script 'bin/setup_first_k8s_app.sh'
+- KUBECONFIG_DATA
+2. eksctl, kubectl and aws-iam-authenticator must be installed
+3. Manually create Kubernetes cluster in AWS EKS using the script 'bin/create_cluster.sh'. eksctl, kubectl and aws-iam-autheticator must be present.
+4. Deploy blue app and blue load balancer using the script 'bin/setup_first_k8s_app.sh'
 
 The step in 1 prepares the CircleCI environment so a code commit to github will trigger CircleCI to build and image and deploy to AWS EKS
 
@@ -53,6 +53,7 @@ The step in 2, 3 will setup the blue environment
 - bin/build_docker.sh: build the image of CURRENT version of app
 - bin/build_push_first_docker.sh: build the blue environment
 - bin/create_cluster.sh: create the EKS k8s cluster
+- bin/del_current_app.sh: delete the CURRENT version of app in k8s cluster (GREEN candidate)
 - bin/del_green_lb.sh: delete the green load balancer
 - bin/del_last_app.sh: delete the LAST version of app in k8s cluster
 - bin/deploy_green_app.sh: deploy the CURRENT version of app in k8s cluster (GREEN candidate)
