@@ -66,6 +66,11 @@ jobs:
           name: Deploy green load balancer 
           command: |
             bin/deploy_green_lb.sh > ~/project/green_lb_url.txt
+      - run:
+          name: Remove green apps
+          when: on_fail
+          command: |
+            bin/del_current_app.sh
       - persist_to_workspace:
           root: ~/
           paths:
@@ -123,6 +128,13 @@ jobs:
             echo "Cleanup last app and green load balancer"
             bin/del_green_lb.sh
             bin/del_last_app.sh
+      - run:
+          name: Remove green app and green load balancer
+          when: on_fail
+          command: |
+            bin/del_green_lb.sh
+            bin/del_current_app.sh
+
 
 workflows:
   get_ip:
