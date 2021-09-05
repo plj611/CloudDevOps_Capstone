@@ -99,10 +99,20 @@ jobs:
                exit 1
             fi
       - run:
+          name: Before promotion
+          command: |
+            BLUE_LB_URL=$(kubectl get services blue-lb -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+            curl -s http://${BLUE_LB_URL}
+      - run:
           name: Promote to PROD
           command: |
             echo "Promote candidate to PROD"
             bin/promote_app.sh
+      - run:
+          name: After promotion
+          command: |
+            BLUE_LB_URL=$(kubectl get services blue-lb -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+            curl -s http://${BLUE_LB_URL}
       - run:
           name: Cleanup last app and green load balancer
           command: |
