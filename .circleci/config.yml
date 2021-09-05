@@ -99,6 +99,10 @@ jobs:
                exit 1
             fi
       - run:
+          name: Install aws-iam-authenticator
+          command: |
+            sudo make aws-iam
+      - run:
           name: Before promotion
           command: |
             BLUE_LB_URL=$(kubectl get services blue-lb -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}')
