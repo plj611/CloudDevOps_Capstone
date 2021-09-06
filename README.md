@@ -30,34 +30,35 @@ The blue-green deployment is described in the following picture
 - DOCKER_PASSWORD
 - KUBECONFIG_DATA
 2. eksctl, kubectl and aws-iam-authenticator must be installed
-3. Manually create Kubernetes cluster in AWS EKS using the script 'bin/create_cluster.sh'. eksctl, kubectl and aws-iam-autheticator must be present.
+3. Manually create Kubernetes cluster in AWS EKS using the script 'bin/create_cluster.sh'.
 4. Deploy blue app and blue load balancer using the script 'bin/setup_first_k8s_app.sh'
 
-The step in 1 prepares the CircleCI environment so a code commit to github will trigger CircleCI to build and image and deploy to AWS EKS
+The step in 1 prepares the CircleCI environment so a code commit to github will trigger CircleCI to build and push image to DockerHub and deploy to AWS EKS
 
 The step in 2, 3 will setup the blue environment
 
 ### Operationalize the app
 
 1. Perform code change
-2. Modify the CURRENT, LAST in config.txt. CURRENT represents the version going to be released. LAST represents the previous version of the app with respect to this release (ie CURRENT)
+2. Modify the CURRENT, LAST in config.txt in root directory of the app. CURRENT represents the version going to be released. LAST represents the previous version of the app with respect to this release (ie CURRENT)
 3. Commit to github
 
 ### Project files description
 
-- Makefile: contains command to prepare the virtual environment, install dependencies and lint the build files
+- Makefile: contains commands to prepare the virtual environment, install dependencies and lint the build files
 - app.py: the simple Flask app
-- Dockerfile: contains instructions on how to containerized the microservice
+- Dockerfile: contains instructions on how to containerize the microservice
 - requirements.txt: dependencies for app.py
-- config.txt: contains variables for the app
-- bin/build_docker.sh: build the image of CURRENT version of app
-- bin/build_push_first_docker.sh: build the blue environment
+- config.txt: contains setup variables for the app
+- bin/build_docker.sh: build the image of CURRENT version of the app
+- bin/build_push_first_docker.sh: build and push the blue app into DockerHub
 - bin/create_cluster.sh: create the EKS k8s cluster
 - bin/del_current_app.sh: delete the CURRENT version of app in k8s cluster (GREEN candidate)
 - bin/del_green_lb.sh: delete the green load balancer
 - bin/del_last_app.sh: delete the LAST version of app in k8s cluster
 - bin/deploy_green_app.sh: deploy the CURRENT version of app in k8s cluster (GREEN candidate)
-- bin/get_k8s.sh: get the base64 string of the k8s cluster configuration. Setup KUBECONFIG_DATA in CircleCI
+- bin/deploy_green_lb.sh: deploy the green load balancer
+- bin/get_k8s.sh: get the base64 string of the k8s cluster configuration. The string is used to setup KUBECONFIG_DATA in CircleCI
 - bin/promote_app.sh: promote the CURRENT version of app (CREEN candidate) to Production 
 - bin/push_docker.sh: push the CURRENT version of app (GREEN candidate) image to DockerHub
 - bin/setup_first_k8s_app.sh: setup the BLUE environment
