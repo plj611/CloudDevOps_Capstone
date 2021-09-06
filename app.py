@@ -1,8 +1,6 @@
 from flask import Flask, request
 from flask import jsonify
 
-app == 1
-
 app = Flask(__name__)
 fp = open("config.txt", encoding="utf-8")
 for line in fp.readlines():
