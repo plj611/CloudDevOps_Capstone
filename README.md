@@ -4,12 +4,12 @@
 
 ### Project introduction
 
-This Udacity project operationalize a simple Python/flask app which will return the status and the version of it in json format. It uses CircleCI and Kubernetes cluster in AWS EKS (Amazon elastic kubernetes service)
+This ![Udacity course](https://www.udacity.com/course/cloud-dev-ops-nanodegree--nd9991) capstone project operationalize a simple Python/Flask app which will return the status and the version of it in json format. It demonstrates the blue-green deployment and uses ![CircleCI](https://circleci.com/) to build and deploy the app into AWS EKS (Amazon Elastic Kubernetes Service)
 
-- We use CircleCI 
-  - To lint and build the app image after code commit
-  - The image is pushed into DockerHub
-  - Promote to production if app passes smoke test. We use blue-green deployment strategy for promotion
+- CircleCI is used to
+  - Lint and build the app image after code commit
+  - Push image into DockerHub
+  - Promote to production if app passes smoke test. Uses blue-green deployment strategy for promotion
 
 The CircleCI jobs and tasks pipeline can be visualized in the following picture
 
@@ -17,9 +17,16 @@ The CircleCI jobs and tasks pipeline can be visualized in the following picture
 
 The blue-green deployment is described in the following picture
 
- ![bluegreen.jpg](https://github.com/plj611/c5/blob/master/images/bluegreen.jpg?raw=true "bluegreen")
+![bluegreen.jpg](https://github.com/plj611/c5/blob/master/images/bluegreen.jpg?raw=true "bluegreen")
 
-### Environment setup
+### Setup
+
+Since the project is going to demonstrate the blue-green deployment strategy, an initial blue environment must be setup
+
+To setup the initial blue environment
+1. Install eksctl, kubectl and aws-iam-authenticator
+2. Execute 'bin/create_cluster.sh' to create Kubernetes cluster in AWS EKS
+3. Execute 'bin/setup_first_k8s_app.sh' to setup the blue environment (blue app and blue load balancer)
 
 1. The following environment variables must be setup in CircleCI
 
@@ -29,9 +36,6 @@ The blue-green deployment is described in the following picture
 - DOCKER_LOGIN
 - DOCKER_PASSWORD
 - KUBECONFIG_DATA
-2. eksctl, kubectl and aws-iam-authenticator must be installed
-3. Manually create Kubernetes cluster in AWS EKS using the script 'bin/create_cluster.sh'.
-4. Deploy blue app and blue load balancer using the script 'bin/setup_first_k8s_app.sh'
 
 The step in 1 prepares the CircleCI environment so a code commit to github will trigger CircleCI to build and push image to DockerHub and deploy to AWS EKS
 
