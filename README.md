@@ -13,7 +13,7 @@ This Udacity project operationalize a simple Python/flask app which will return 
 
 The CircleCI jobs and tasks pipeline can be visualized in the following picture
 
-![](plj611/c5/blob/master/images/pipeline.jpg)
+![pipleline](https://github.com/plj611/c5/blob/master/images/pipeline.jpg?raw=true)
 
 The blue-green deployment is described in the following picture
 
