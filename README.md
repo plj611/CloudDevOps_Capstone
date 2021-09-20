@@ -17,7 +17,7 @@ The CircleCI jobs and tasks pipeline can be visualized in the following picture
 
 The blue-green deployment is described in the following picture
 
- ![bluegreen.jpg](https://github.com/plj611/c5/blob/master/images/bluegreen.jpg)
+ ![bluegreen.jpg](https://github.com/plj611/c5/blob/master/images/bluegreen.jpg?raw=true "bluegreen")
 
 ### Environment setup
 
