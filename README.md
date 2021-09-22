@@ -4,7 +4,7 @@
 
 ### Project introduction
 
-This ![Udacity course](https://www.udacity.com/course/cloud-dev-ops-nanodegree--nd9991) capstone project operationalize a simple Python/Flask app which will return the status and the version of it in json format. It demonstrates the blue-green deployment and uses ![CircleCI](https://circleci.com/) to build and deploy the app into AWS EKS (Amazon Elastic Kubernetes Service)
+This [Udacity course](https://www.udacity.com/course/cloud-dev-ops-nanodegree--nd9991) capstone project operationalize a simple Python/Flask app which will return the status and the version of it in json format. It demonstrates the blue-green deployment and uses [CircleCI](https://circleci.com/) to build and deploy the app into AWS EKS (Amazon Elastic Kubernetes Service)
 
 - CircleCI is used to
   - Lint and build the app image after code commit
