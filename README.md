@@ -6,12 +6,12 @@
 
 This [Udacity course](https://www.udacity.com/course/cloud-dev-ops-nanodegree--nd9991) capstone project operationalize a simple Python/Flask app which will return the status and the version of it in json format. It demonstrates the blue-green deployment and uses [CircleCI](https://circleci.com/) to build and deploy the app into AWS EKS (Amazon Elastic Kubernetes Service)
 
-- CircleCI is used to
+- This project has workflow defined in CircleCI to
   - Lint and build the app image after code commit
   - Push image into DockerHub
-  - Promote to production if app passes smoke test. Uses blue-green deployment strategy for promotion
+  - Promote to production if app passes smoke test. Uses blue-green deployment strategy to promote app into production
 
-The CircleCI jobs and tasks pipeline can be visualized in the following picture
+The jobs and tasks pipeline defined in CircleCI can be visualized in the following picture
 
 ![pipleline.jpg](https://github.com/plj611/c5/blob/master/images/pipeline.jpg?raw=true "pipeline")
 
@@ -24,12 +24,11 @@ The blue-green deployment is described in the following picture
 Since the project is going to demonstrate the blue-green deployment strategy, an initial blue environment must be setup
 
 To setup the initial blue environment
-1. Install eksctl, kubectl and aws-iam-authenticator
-2. Execute 'bin/create_cluster.sh' to create Kubernetes cluster in AWS EKS
-3. Execute 'bin/setup_first_k8s_app.sh' to setup the blue environment (blue app and blue load balancer)
+- Install eksctl, kubectl and aws-iam-authenticator
+- Execute 'bin/create_cluster.sh' to create Kubernetes cluster in AWS EKS
+- Execute 'bin/setup_first_k8s_app.sh' to setup the blue environment (blue app and blue load balancer)
 
-1. The following environment variables must be setup in CircleCI
-
+To use CircleCI as a CI/CD platform, this project must be followed in CircleCI and setup the following environment variables
 - AWS_ACCESS_KEY_ID
 - AWS_DEFAULT_REGION
 - AWS_SECRET_ACCESS_KEY
@@ -37,15 +36,11 @@ To setup the initial blue environment
 - DOCKER_PASSWORD
 - KUBECONFIG_DATA
 
-The step in 1 prepares the CircleCI environment so a code commit to github will trigger CircleCI to build and push image to DockerHub and deploy to AWS EKS
+### How to opperationalize the app
 
-The step in 2, 3 will setup the blue environment
-
-### Operationalize the app
-
-1. Perform code change
-2. Modify the CURRENT, LAST in config.txt in root directory of the app. CURRENT represents the version going to be released. LAST represents the previous version of the app with respect to this release (ie CURRENT)
-3. Commit to github
+1. Perform application development and code change
+2. Modify the CURRENT, LAST variables in config.txt in root directory of the app. **CURRENT represents the version going to be released, LAST represents the previous version of the app with respect to this release (ie CURRENT)**
+3. Commit the code change and push to github
 
 ### Project files description
 
