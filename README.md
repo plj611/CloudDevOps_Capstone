@@ -6,10 +6,10 @@
 
 This [Udacity course](https://www.udacity.com/course/cloud-dev-ops-nanodegree--nd9991) capstone project operationalize a simple Python/Flask app which will return the status and the version of it in json format. It demonstrates the blue-green deployment and uses [CircleCI](https://circleci.com/) to build and deploy the app into AWS EKS (Amazon Elastic Kubernetes Service)
 
-- This project has workflow defined in CircleCI to
-  - Lint and build the app image after code commit
-  - Push image into DockerHub
-  - Promote to production if app passes smoke test. Uses blue-green deployment strategy to promote app into production
+This project has workflow defined in CircleCI to
+- Lint and build the app image after code commit
+- Push image into DockerHub
+- Promote to production if app passes smoke test. Uses blue-green deployment strategy to promote app into production
 
 The jobs and tasks pipeline defined in CircleCI can be visualized in the following picture
 
