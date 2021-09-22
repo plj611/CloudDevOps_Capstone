@@ -13,12 +13,12 @@ This project has workflow defined in CircleCI to
 
 The jobs and tasks pipeline defined in CircleCI can be visualized in the following picture
 
+![pipeline](https://user-images.githubusercontent.com/30945062/134279059-dd2b3164-2eb6-43e8-b210-b094ca12a32f.jpg)
 ![pipleline.jpg](https://github.com/plj611/c5/blob/master/images/pipeline.jpg?raw=true "pipeline")
 
 The blue-green deployment is described in the following picture
 
 ![bluegreen](https://user-images.githubusercontent.com/30945062/134278718-e217955c-9012-4637-89c8-f0e5c29402eb.jpg)
-
 ![bluegreen.jpg](https://github.com/plj611/c5/blob/master/images/bluegreen.jpg?raw=true "bluegreen")
 
 ### Setup
