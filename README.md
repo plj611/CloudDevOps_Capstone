@@ -1,6 +1,6 @@
 ## Cloud DevOps Engineer capstone project
 
-[![CircleCI](https://circleci.com/gh/plj611/c5/tree/master.svg?style=svg)](https://circleci.com/gh/plj611/c5/tree/master)
+[![CircleCI](https://circleci.com/gh/plj611/CloudDevOps_Capstone/tree/master.svg?style=svg)](https://circleci.com/gh/plj611/CloudDevOps_Capstone/tree/master)
 
 ### Project introduction
 
